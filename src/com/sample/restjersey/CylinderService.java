@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDateTime;  
 
 @Path("/cylinder")
 
@@ -15,22 +16,19 @@ public class CylinderService {
 	
 	//test entry point
 	@GET
-	@Path("")
+	@Path("/")
 	public Response sayHello() {
-		return Response.ok("Hello World from API REST", MediaType.APPLICATION_JSON).build();
+		return Response.ok("Hello World from API REST " +  LocalDateTime.now() , MediaType.APPLICATION_JSON).build();
 	}
 	
 	@GET//shows usage
 	@Path("/calculatesurfacevolume")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_XML)
 	public String calculateSurfaceVolume() {
-	
-		String result = "@Produces(\"application/json\") Output: \n\nRetunrs surface & volume: \n\n";
 		
-		return "<CylinderAreaService>\n" + "<help>Usage:\n calculatearea\\radio\\height</help>\n"
-				+ "<coutput>" + result + "</coutput>"
-				+ ""
-				+ "</CylinderAreaService>";
+		return "<xml><CylinderAreaService>\n" + "<help>Usage:\n calculatearea\\radio\\height\n"
+				+ "Output: @Produces(\"application/json\")\nRetunrs surface and volume\n</help>"
+				+ "\n</CylinderAreaService></xml>";
 	}
 	
 
